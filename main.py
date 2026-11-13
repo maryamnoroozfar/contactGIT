@@ -3,6 +3,7 @@ import os
 import uuid
 import ctypes
 
+
 def get_user(*headers):
     user = dict()
     for header in headers:
@@ -10,7 +11,9 @@ def get_user(*headers):
             user[header] = str(uuid.uuid4())
         else:
             user[header] = input("enter" + header.title() + ":")
-    return user
+    name_keys = frozenset(headers)
+    user = {name_keys: user}
+    print(user)
 
 
 def save_user(file_path : str, user: dict):
@@ -72,3 +75,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
